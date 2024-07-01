@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+    <h1>用户列表</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }} - {{ user.phone }} - {{user.password}}</li>
+        {% endfor %}
+    </ul>
+    <h1>医生列表</h1>
+    <ul>
+        {% for doctor in doctors %}
+            <li>{{ doctor.username }} - {{ doctor.phone }} - {{doctor.password}} - {{doctor.department}}</li>
+        {% endfor %}
+    </ul>
+    <h1>医生信息列表</h1>
+    <ul>
+        {% for doctor_available in doctors_available %}
+            <li>{{ doctor_available.doctor_name }} - {{ doctor_available.department }} - {{doctor_available.date}} - {{doctor_available.hour_8_9}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

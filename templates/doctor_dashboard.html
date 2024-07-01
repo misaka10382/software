@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Dr. {{ doctor.username }}</h1>
+    <p>Department: {{ doctor.department }}</p>
+    <p>Introduction: {{ doctor.introduction }}</p>
+    <p>Consultation Fee: {{ doctor.pay }}</p>
+    <button onclick="location.href='/doctor/update_info'">Update Information</button>
+    <button onclick="location.href='/doctor/view_registrations'">View Registrations</button>
+    <button onclick="location.href='/doctor/set_availability'">Set Availability</button>
+    <button onclick="location.href='/auth/logout'">Logout</button>
+</body>
+</html>

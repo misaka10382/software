@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Department Doctors</title>
+</head>
+<body>
+    <h1>Doctors in {{ doctors[0].department }} on {{ date }} during {{ time_slot }}</h1>
+    <ul>
+        {% for doctor in doctors %}
+        <li>
+            <a href="{{ url_for('users.doctor_info', id=doctor['id']) }}">{{ doctor['username'] }}</a> -
+            Department: {{ doctor['department'] }} -
+            Available: {{ 'Yes' if doctor['available'] else 'No' }}
+            {% if doctor['available'] %}
+            <form action="/user/book_appointment" method="post" style="display:inline;">
+                <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
+                <input type="hidden" name="doctor_id" value="{{ doctor['id'] }}">
+                <input type="hidden" name="date" value="{{ date }}">
+                <input type="hidden" name="time_slot" value="{{ time_slot }}">
+                <button type="submit">Book Appointment</button>
+            </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <button onclick="location.href='{{ url_for("users.user_dashboard", user_id=user_id) }}'">Back to Dashboard</button>
+</body>
+</html>

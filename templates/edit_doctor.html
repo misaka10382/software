@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Doctor</title>
+</head>
+<body>
+    <h1>Edit Doctor Information</h1>
+    <form action="/admin/edit_doctor/{{ doctor.id }}" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value="{{ doctor.username }}" required><br>
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" value="{{ doctor.phone }}" required><br>
+        <label for="department">Department:</label><br>
+        <input type="text" id="department" name="department" value="{{ doctor.department }}" required><br>
+        <label for="pay">Pay:</label><br>
+        <input type="number" id="pay" name="pay" step="0.01" value="{{ doctor.pay }}" required><br>
+        <label for="introduction">Introduction:</label><br>
+        <textarea id="introduction" name="introduction" required>{{ doctor.introduction }}</textarea><br>
+        <button type="submit">Update</button>
+    </form>
+    <button onclick="location.href='/admin/view_doctors'">Back to Doctors</button>
+</body>
+</html>

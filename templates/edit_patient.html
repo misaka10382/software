@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Patient</title>
+</head>
+<body>
+    <h1>Edit Patient Information</h1>
+    <form action="/admin/edit_patient/{{ patient.id }}" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value="{{ patient.username }}" required><br>
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" value="{{ patient.phone }}" required><br>
+        <button type="submit">Update</button>
+    </form>
+    <button onclick="location.href='/admin/view_patients'">Back to Patients</button>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Availability</title>
+</head>
+<body>
+    <h1>Set Availability for {{ date }}</h1>
+    <form action="/doctor/set_availability" method="get">
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" value="{{ date }}">
+        <button type="submit">View Availability</button>
+    </form>
+    <form action="/doctor/set_availability" method="post">
+        <input type="hidden" name="date" value="{{ date }}">
+        <table>
+            <tr>
+                <th>Time Slot</th>
+                <th>Available</th>
+                <th>Current Status</th>
+            </tr>
+            {% for hour in ['8_9', '9_10', '10_11', '11_12', '12_13', '13_14', '14_15', '15_16'] %}
+            <tr>
+                <td>{{ hour.replace('_', ':') }}:00 - {{ hour.split('_')[1] }}:00</td>
+                <td>
+                    {% set time_slot = hour.replace('_', '-') %}
+                    {% set registration_exists = registrations[time_slot] %}
+                    {% if registration_exists %}
+                        <input type="checkbox" name="available_{{ hour }}" disabled checked> (Booked)
+                    {% else %}
+                        <input type="checkbox" name="available_{{ hour }}" {{ 'checked' if time_slots[hour] else '' }}>
+                    {% endif %}
+                </td>
+                <td>{{ 'Available' if time_slots[hour] else 'Not Available' }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Update Availability</button>
+    </form>
+    <button onclick="location.href='/doctor/dashboard'">Back to Dashboard</button>
+</body>
+</html>

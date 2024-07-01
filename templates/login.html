@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Test</title>
+</head>
+<body>
+    <h1>Login Test</h1>
+    <form id="loginForm">
+        <label for="identifier">Username:</label><br>
+        <input type="text" id="identifier" name="identifier"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <label for="user_type">User Type:</label><br>
+        <select id="user_type" name="user_type">
+            <option value="user">User</option>
+            <option value="doctor">Doctor</option>
+            <option value="Admin">Admin</option>
+        </select><br>
+        <button type="button" onclick="login()">Login</button>
+    </form>
+    <div id="message"></div>
+    <p>Don't have an account? <a href="/auth/register">Register here</a></p>
+    <p>Forgot your password? <a href="/auth/password_reset">Reset it here</a></p>
+
+    <script>
+        function login() {
+            var formData = {
+                identifier: document.getElementById("identifier").value,
+                password: document.getElementById("password").value,
+                user_type: document.getElementById("user_type").value
+            };
+
+            fetch('/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("message").innerText = data.message;
+                if (data.message == '登录成功'){
+                    window.location.href = data.redirect_url;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

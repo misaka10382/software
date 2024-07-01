@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Department</title>
+</head>
+<body>
+    <h1>Select Department</h1>
+    <form action="/user/select_department" method="post">
+        <label for="department">Department:</label>
+        <select id="department" name="department" required>
+            {% for department in departments %}
+            <option value="{{ department[0] }}">{{ department[0] }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br>
+        <label for="time_slot">Time Slot:</label>
+        <select id="time_slot" name="time_slot" required>
+            <option value="8-9">8:00-9:00</option>
+            <option value="9-10">9:00-10:00</option>
+            <option value="10-11">10:00-11:00</option>
+            <option value="11-12">11:00-12:00</option>
+            <option value="12-13">12:00-13:00</option>
+            <option value="13-14">13:00-14:00</option>
+            <option value="14-15">14:00-15:00</option>
+            <option value="15-16">15:00-16:00</option>
+        </select><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

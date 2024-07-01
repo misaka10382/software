@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Registrations</title>
+</head>
+<body>
+    <h1>View Registrations</h1>
+    <ul>
+        {% for registration in registrations %}
+        <li>
+            {{ registration.date }} - {{ registration.time_slot }} with {{ registration.user.username }} -- is_paid {{registration.is_charge}}
+            <form action="{{ url_for('doctors.delete_doctor_registration', registration_id=registration.id) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <button onclick="location.href='/doctor/dashboard'">Back to Dashboard</button>
+</body>
+</html>

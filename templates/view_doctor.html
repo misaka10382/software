@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Information</title>
+</head>
+<body>
+    <h1>Doctor Information</h1>
+    <p>Username: {{ doctor.username }}</p>
+    <p>Phone: {{ doctor.phone }}</p>
+    <p>Department: {{ doctor.department }}</p>
+    <p>Pay: {{ doctor.pay }}</p>
+    <p>Introduction: {{ doctor.introduction }}</p>
+    
+    <h2>Check Availability</h2>
+    <form action="" method="post">
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" required>
+        <button type="submit">Check Availability</button>
+    </form>
+
+    {% if availability %}
+    <h3>Availability on {{ availability.date }}</h3>
+    <ul>
+        <li>8:00-9:00: {{ 'Available' if availability.hour_8_9 else 'Unavailable' }}</li>
+        <li>9:00-10:00: {{ 'Available' if availability.hour_9_10 else 'Unavailable' }}</li>
+        <li>10:00-11:00: {{ 'Available' if availability.hour_10_11 else 'Unavailable' }}</li>
+        <li>11:00-12:00: {{ 'Available' if availability.hour_11_12 else 'Unavailable' }}</li>
+        <li>12:00-13:00: {{ 'Available' if availability.hour_12_13 else 'Unavailable' }}</li>
+        <li>13:00-14:00: {{ 'Available' if availability.hour_13_14 else 'Unavailable' }}</li>
+        <li>14:00-15:00: {{ 'Available' if availability.hour_14_15 else 'Unavailable' }}</li>
+        <li>15:00-16:00: {{ 'Available' if availability.hour_15_16 else 'Unavailable' }}</li>
+    </ul>
+    {% endif %}
+    
+    <button onclick="location.href='/admin/dashboard'">Back to Dashboard</button>
+</body>
+</html>

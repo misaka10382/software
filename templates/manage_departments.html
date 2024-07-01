@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Departments</title>
+</head>
+<body>
+    <h1>Manage Departments</h1>
+    <button onclick="location.href='/admin/add_department'">Add Department</button>
+    <h2>Existing Departments</h2>
+    <ul>
+        {% for department in departments %}
+        <li>
+            {{ department.name }}
+            {% if not department.doctors %}
+            <form action="/admin/delete_department/{{ department.id }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+            {% else %}
+            <span>(Cannot delete, doctors assigned)</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <button onclick="location.href='/admin/dashboard'">Back to Dashboard</button>
+</body>
+</html>

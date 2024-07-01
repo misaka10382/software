@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Doctor Information</title>
+</head>
+<body>
+    <h1>Update Information</h1>
+    <form action="/doctor/update_info" method="post">
+        <label for="introduction">Introduction:</label><br>
+        <textarea id="introduction" name="introduction" required>{{ doctor.introduction }}</textarea><br>
+        <label for="pay">Consultation Fee:</label><br>
+        <input type="number" id="pay" name="pay" step="0.01" value="{{ doctor.pay }}" required><br>
+        <button type="submit">Update</button>
+    </form>
+    <button onclick="location.href='/doctor/dashboard'">Back to Dashboard</button>
+</body>
+</html>

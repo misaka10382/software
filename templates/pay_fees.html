@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pay Fees</title>
+    <script>
+        function submitPayment() {
+            fetch('/user/pay_fees', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === '缴费成功') {
+                    document.getElementById('payment-message').innerText = 'Payment Successful!';
+                    document.getElementById('payment-form').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Pay Fees</h1>
+    <h2>Unpaid Registrations</h2>
+    <ul id="registrations-list">
+        {% for detail in registration_details %}
+        <li>
+            {{ detail.registration.date }} - {{ detail.registration.time_slot }} with Dr. {{ detail.registration.doctor_name }} ({{ detail.registration.department }})
+            <span>Fee: {{ detail.fee }} </span>
+        </li>
+        {% endfor %}
+    </ul>
+    <h3>Total Fee: {{ total_fee }}</h3>
+    <form id="payment-form" onsubmit="event.preventDefault(); submitPayment();">
+        <button type="submit">Pay</button>
+    </form>
+    <p id="payment-message"></p>
+    <button onclick="location.href='/user/dashboard'">Back to Dashboard</button>
+</body>
+</html>

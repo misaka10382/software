@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Doctor</title>
+</head>
+<body>
+    <h1>Add Doctor</h1>
+    <form method="POST" action="{{ url_for('admin.add_doctor') }}">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <label for="department">Department:</label><br>
+        <input type="text" id="department" name="department" required><br>
+        <label for="pay">Pay:</label><br>
+        <input type="number" id="pay" name="pay" required><br>
+        <label for="introduction">Introduction:</label><br>
+        <textarea id="introduction" name="introduction"></textarea><br>
+        <button type="submit">Add Doctor</button>
+    </form>
+</body>
+</html>

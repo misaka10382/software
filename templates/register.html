@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h1>User Registration</h1>
+    <form id="registerForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <label for="gender">User Type:</label><br>
+        <select id="gender" name="gender">
+            <option value="man">man</option>
+            <option value="woman">woman</option>
+        </select><br>
+        <label for="age">age:</label><br>
+        <input type="number" id="age" name="age"><br>
+        <button type="button" onclick="register()">Register</button>
+
+    </form>
+    <div id="message"></div>
+
+    <script>
+        function register() {
+            var formData = {
+                username: document.getElementById("username").value,
+                phone: document.getElementById("phone").value,
+                password: document.getElementById("password").value,
+                gender: document.getElementById("gender").value,
+                age: document.getElementById("age").value
+            };
+
+            fetch('/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("message").innerText = data.message;
+                if (data.message == '注册成功') {
+                    // 注册成功后重定向到登录页面
+                    window.location.href = '/auth/login';  
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
